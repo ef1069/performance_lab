@@ -7,17 +7,31 @@
 # Output: 3
 
 def most_frequent(numbers):
-    # Your code here
-    pass
+    if not numbers:
+        return None
+
+    counts = {}
+    most_common = numbers[0]
+    highest_count = 0
+
+    for number in numbers:
+        counts[number] = counts.get(number, 0) + 1
+
+        if counts[number] > highest_count:
+            highest_count = counts[number]
+            most_common = number
+
+    return most_common
 
 """
 Time and Space Analysis for problem 1:
-- Best-case:
-- Worst-case:
-- Average-case:
-- Space complexity:
-- Why this approach?
-- Could it be optimized?
+- Best-case: O(n)
+- Worst-case: O(n)
+- Average-case: O(n)
+- Space complexity: O(n)
+- Why this approach? The time and space complexity is mostly affected by the length of the list put through the loop.
+A loop is necessary because each number in the list needs to be compared to all the others.
+- Could it be optimized? I do not believe this could be optimized, because each number in the list needs to be compared to the others.
 """
 
 
@@ -29,17 +43,26 @@ Time and Space Analysis for problem 1:
 # Output: [4, 5, 6, 7]
 
 def remove_duplicates(nums):
-    # Your code here
-    pass
+    seen = set()
+    result = []
+
+    for num in nums:
+        if num not in seen:
+            seen.add(num)
+            result.append(num)
+
+    return result
 
 """
 Time and Space Analysis for problem 2:
-- Best-case:
-- Worst-case:
-- Average-case:
-- Space complexity:
-- Why this approach?
-- Could it be optimized?
+- Best-case: O(n)
+- Worst-case: O(n)
+- Average-case: O(n)
+- Space complexity: O(n)
+- Why this approach? Since we want to preserve order and not just print the list as a set, we need to add the unique values
+to a new list individually. 
+- Could it be optimized? This possibly could be optimized if there was a way to change the list to a set then back to 
+a list while preserving order.
 """
 
 
@@ -52,17 +75,24 @@ Time and Space Analysis for problem 2:
 # Output: [(1, 4), (2, 3)]
 
 def find_pairs(nums, target):
-    # Your code here
-    pass
+    meets_target = []
+    for num_1 in nums:
+        if num_1 <= target:
+            for num_2 in nums:
+                if num_1 + num_2 == target:
+                    meets_target.append((num_1, num_2))
+    return meets_target
 
 """
 Time and Space Analysis for problem 3:
-- Best-case:
-- Worst-case:
-- Average-case:
-- Space complexity:
-- Why this approach?
-- Could it be optimized?
+- Best-case: O(n^2)
+- Worst-case: O(n^2)
+- Average-case:O(n^2)
+- Space complexity: O(n)
+- Why this approach? I created a nested loop so that each element in the list, can be compared to all the others to find if their
+sum meets the target.
+- Could it be optimized? This could be optimized by findind a way to limit space complexity to add each set as a sum once to limit
+space complexity. 
 """
 
 
@@ -75,7 +105,8 @@ Time and Space Analysis for problem 3:
 # add_n_items(6) → should print when resizing happens.
 
 def add_n_items(n):
-    # Your code here
+    add_n_items[1]
+    
     pass
 
 """
@@ -110,3 +141,17 @@ Time and Space Analysis for problem 5:
 - Why this approach?
 - Could it be optimized?
 """
+
+
+def main():
+    list_1 = [1, 3, 2, 3, 4, 1, 3]
+    list_2 = [1, 2, 3, 4]
+    print(list_1)
+    list_most = most_frequent(list_1)
+    print(list_most)
+    no_duplicates=remove_duplicates(list_1)
+    print(no_duplicates)
+    target_list = find_pairs(list_2, 5)
+    print(target_list)
+
+main()
