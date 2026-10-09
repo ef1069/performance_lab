@@ -39,8 +39,8 @@ A loop is necessary because each number in the list needs to be compared to all 
 # Write a function that returns a list with duplicates removed but preserves order.
 #
 # Example:
-# Input: [4, 5, 4, 6, 5, 7]
-# Output: [4, 5, 6, 7]
+# Input: [1, 3, 2, 3, 4, 1, 3]
+# Output: [1, 3, 2, 4]
 
 def remove_duplicates(nums):
     seen = set()
@@ -105,17 +105,30 @@ space complexity.
 # add_n_items(6) → should print when resizing happens.
 
 def add_n_items(n):
-    add_n_items[1]
-    
-    pass
+    counter = 0
+    empty_list = [None] * n
+    print("length of list:", len(empty_list))
+    while counter < n:
+        empty_list.append(counter)
+        print("Added", counter, "to the list")
+        counter += 1
+    if counter == n:
+        counter = 0
+        print("list full, doubling...")
+        empty_list_resize = [None] * (2 * n)
+        while counter < n:
+            empty_list_resize.append(counter)
+            print("Added,", counter, "to new list")
+            counter += 1
+        print("new list length", len(empty_list))
 
 """
 Time and Space Analysis for problem 4:
-- When do resizes happen?
-- What is the worst-case for a single append?
-- What is the amortized time per append overall?
-- Space complexity:
-- Why does doubling reduce the cost overall?
+- When do resizes happen? Resize occurs when the list is full. Once the list adds all n number of elements, it is full so it must double itself and copy over to a new list.
+- What is the worst-case for a single append? Worst case is O(n), the scale of copying will scale linearly with the original size of the list.
+- What is the amortized time per append overall? Amortized time is O(1), usually appending will not cause a resize, so mostly it is a O(1) operation.
+- Space complexity: O(n), the space scales with the list
+- Why does doubling reduce the cost overall? It reduces the cost overall because it does not happen often and the larger the list, the less it will have to double. 
 """
 
 
@@ -129,29 +142,43 @@ Time and Space Analysis for problem 4:
 # Because: [1, 1+2, 1+2+3, 1+2+3+4]
 
 def running_total(nums):
-    # Your code here
-    pass
+    total = 0
+    total_list = []
+    for num in nums:
+        total = total + num
+        total_list.append(total)
+    print(total_list)
+
 
 """
 Time and Space Analysis for problem 5:
-- Best-case:
-- Worst-case:
-- Average-case:
-- Space complexity:
-- Why this approach?
-- Could it be optimized?
+- Best-case: O(1)
+- Worst-case: O(n)
+- Average-case: O(n)
+- Space complexity: O(n)
+- Why this approach? This approach is simplistic and only contains one loop. The loop will go through each element, add it to the total and append each total to a new list as it goes.
+- Could it be optimized? This may be able to be optimized but I beleive atleast one loop will be necessary. 
 """
 
 
 def main():
+    
     list_1 = [1, 3, 2, 3, 4, 1, 3]
     list_2 = [1, 2, 3, 4]
+
     print(list_1)
+    
     list_most = most_frequent(list_1)
     print(list_most)
+    
     no_duplicates=remove_duplicates(list_1)
     print(no_duplicates)
+    
     target_list = find_pairs(list_2, 5)
     print(target_list)
+
+    add_n_items(6)
+
+    running_total(list_2)
 
 main()
