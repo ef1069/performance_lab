@@ -171,7 +171,28 @@ Time and Space Analysis for problem 5:
 """
 
 
-# Optimized 
+# Optimized Problem 3: Return all pairs that sum together
+# Input: ([1, 2, 3, 4], target = 5)
+# Output: [(2, 3), (1, 4)]
+
+def find_pairs_optim(nums, target):
+    pairs = []
+    seen = set()
+
+    for num in nums:
+        complement = target - num
+
+        if complement in seen:
+            pairs.append((complement, num))
+
+        seen.add(num)
+
+    return pairs
+
+"""
+- This version of the function has O(n) time and O(n) space complexity. It is much better optimized and removes the nested loops to save time. It also now removes duplicates and only
+adds a pair once. Overall it has much better performance and correctly solves the problem 
+"""
 
 def main():
     
@@ -192,5 +213,8 @@ def main():
     add_n_items(6)
 
     running_total(list_2)
+
+    list_2_target = find_pairs_optim(list_2, 5)
+    print(list_2_target)
 
 main()
