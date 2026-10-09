@@ -105,22 +105,32 @@ space complexity.
 # add_n_items(6) → should print when resizing happens.
 
 def add_n_items(n):
-    counter = 0
-    empty_list = [None] * n
-    print("length of list:", len(empty_list))
-    while counter < n:
-        empty_list.append(counter)
-        print("Added", counter, "to the list")
-        counter += 1
-    if counter == n:
-        counter = 0
-        print("list full, doubling...")
-        empty_list_resize = [None] * (2 * n)
-        while counter < n:
-            empty_list_resize.append(counter)
-            print("Added,", counter, "to new list")
-            counter += 1
-        print("new list length", len(empty_list))
+    if n < 0:
+        raise ValueError("n must be positive")
+
+    capacity = n
+    items = [None] * capacity
+    size = 0
+
+    print("initial list capacity:", capacity)
+
+    for value in range(n):
+        items[size] = value
+        size += 1
+        print("Added", value, "to the list")
+
+        if size == capacity and capacity > 0:
+            print ("list full, doubling...")
+            resized = [None] * (2 * capacity)
+
+            for index in range(size):
+                resized[index] = items[index]
+
+            items = resized
+            capacity = len(items)
+
+    print("items stored:", size)
+    print("final capacity:", capacity)
 
 """
 Time and Space Analysis for problem 4:
@@ -160,6 +170,8 @@ Time and Space Analysis for problem 5:
 - Could it be optimized? This may be able to be optimized but I beleive atleast one loop will be necessary. 
 """
 
+
+# Optimized 
 
 def main():
     
